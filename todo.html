@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .todo {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+        }
+        
+        .todo h2 {
+            font-size: 24px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        
+        .todo input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .todo button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .todo button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f4f4f4;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo">
+        <h2>Add the tasks list</h2>
+        <input type="text" placeholder="Enter task">
+        <button class="btn">Add task</button>
+        <ul class="task-list"></ul> 
+    </div>
+    
+    <script>
+       
+        const button1 = document.querySelector('.btn'); 
+        const inputField = document.querySelector('input[type="text"]'); 
+        const todoContainer = document.querySelector('.task-list'); 
+
+        
+        function addTask() {
+            const taskText = inputField.value.trim(); 
+
+            
+            if (taskText === '') {
+                alert("Enter a task");
+                return;
+            }
+
+            
+            const taskItem = document.createElement('li');
+            taskItem.textContent = taskText;
+
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = "Task completed";
+            deleteButton.style.marginLeft = "10px";
+            deleteButton.style.backgroundColor = "#f44336";
+            deleteButton.style.color = "white";
+            deleteButton.style.border = "none";
+            deleteButton.style.padding = "5px 10px";
+            deleteButton.style.borderRadius = "5px";
+            deleteButton.style.cursor = "pointer";
+
+            
+            deleteButton.addEventListener('click', () => {
+                todoContainer.removeChild(taskItem); 
+            });
+
+            
+            taskItem.appendChild(deleteButton);
+            todoContainer.appendChild(taskItem);
+            inputField.value = "";
+        }
+
+        
+        button1.addEventListener('click', addTask);
+    </script>
+</body>
+</html>
